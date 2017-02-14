@@ -1,5 +1,6 @@
 package es.iesnervion.atellez.pruebabd;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText id, nombre, apellidos;
-    Button btnGuardar;
+    Button btnGuardar, btnListar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,14 +25,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nombre = (EditText) findViewById(R.id.edtNombre);
         apellidos = (EditText) findViewById(R.id.edApellidos);
         btnGuardar = (Button) findViewById(R.id.btnGuardar);
-
+        btnListar = (Button) findViewById(R.id.btnListar);
         btnGuardar.setOnClickListener(this);
+        btnListar.setOnClickListener(this);
     }
 
 
 
     @Override
     public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.btnGuardar:
                 String iden = id.getText().toString();
                 String name = id.getText().toString();
                 String surname = id.getText().toString();
@@ -50,6 +54,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else{
                     Toast.makeText(this, "El usuario no se ha podido crear",Toast.LENGTH_SHORT).show();
                 }
+                break;
+            case R.id.btnListar:
+                Intent intent = new Intent(this, Lista.class);
+                startActivity(intent);
+                break;
+        }
+
 
         }
 }
